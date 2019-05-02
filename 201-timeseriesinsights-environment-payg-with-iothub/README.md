@@ -8,3 +8,6 @@
 </a>
 
 This template creates a Time Series Insights environment using the Pay As You Go Sku (refered to as 'longterm' in the template), a child event source configured to consume events from an IoT Hub, a storage account to hold data, and access policies that grant access to the environment's data. For more information, go to: <https://docs.microsoft.com/azure/time-series-insights/>.
+
+Example of setting "environmentTimeSeriesIdProperties" parameter 
+[{"name": "deviceId", "type":"string"}]
