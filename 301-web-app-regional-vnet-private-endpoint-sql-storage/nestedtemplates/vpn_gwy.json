@@ -9,7 +9,7 @@
             }
         },
         "gatewaySku": {
-            "type": "object",
+            "type": "string",
             "defaultValue": "Basic",
             "metadata": {
                 "description": "The SKU of the gateway"
