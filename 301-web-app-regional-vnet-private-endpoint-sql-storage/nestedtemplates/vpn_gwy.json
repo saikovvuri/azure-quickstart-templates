@@ -50,8 +50,7 @@
             "name": "[variables('gatewayName')]",
             "location": "[parameters('location')]",
             "dependsOn": [
-            "[concat('Microsoft.Network/publicIPAddresses/', variables('gatewayPIPName'))]",
-            "[resourceId('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+            "[concat('Microsoft.Network/publicIPAddresses/', variables('gatewayPIPName'))]"            
             ],
             "properties": {
             "ipConfigurations": [
