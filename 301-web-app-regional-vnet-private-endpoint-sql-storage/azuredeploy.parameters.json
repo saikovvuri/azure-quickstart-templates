@@ -18,6 +18,15 @@
                             "delegations": null,
                             "privateEndpointNetworkPolicies": "Disabled",
                             "privateLinkServiceNetworkPolicies": "Enabled"
+                        },
+                        {
+                            "name": "GatewaySubnet",
+                            "addressPrefix": "10.1.255.224/27",
+                            "udrName": null,
+                            "nsgName": null,
+                            "delegations": null,
+                            "privateEndpointNetworkPolicies": "Disabled",
+                            "privateLinkServiceNetworkPolicies": "Disabled"
                         }
                     ]
                 },
@@ -48,10 +57,10 @@
             ]
         },
         "sqlAdministratorLoginName": {
-            "value": "GEN-UNIQUE"
+            "value": "sqldbaadmin"
         },
         "sqlAdministratorLoginPassword": {
-            "value": "GEN-PASSWORD"
+            "value": "Kabootar@1218"
         }
     }
 }

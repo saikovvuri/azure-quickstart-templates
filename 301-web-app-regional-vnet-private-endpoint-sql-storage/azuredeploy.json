@@ -68,7 +68,8 @@
         "privateDnsNestedTemplateUri": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/private_dns.json', parameters('_artifactsLocationSasToken')))]",
         "privateDnsRecordNestedTemplateUri": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/dns_record.json', parameters('_artifactsLocationSasToken')))]",
         "privateLinkIpConfigsNestedTemplateUri": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/private_link_ipconfigs.json', parameters('_artifactsLocationSasToken')))]",
-        "privateLinkIpConfigsHelperNestedTemplateUri": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/private_link_ipconfigs_helper.json', parameters('_artifactsLocationSasToken')))]"
+        "privateLinkIpConfigsHelperNestedTemplateUri": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/private_link_ipconfigs_helper.json', parameters('_artifactsLocationSasToken')))]",
+        "vpnGatewayNestedTemplateUri": "[uri(parameters('_artifactsLocation'), concat('nestedtemplates/vpn_gwy.json', parameters('_artifactsLocationSasToken')))]"
 
     },
     "resources": [
@@ -433,6 +434,36 @@
                     },
                     "privateLinkNicIpConfigTemplateUri": {
                         "value": "[variables('privateLinkIpConfigsHelperNestedTemplateUri')]"
+                    }
+                }
+            }
+        },
+        {
+            "comments": "This deployment links to the vpn_gwy.json nested ARM template",
+            "name": "linkedTemplate-vpn-gwy",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2019-10-01",
+            "dependsOn": [
+                "vnetCopy"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "contentVersion": "1.0.0.0",
+                    "uri": "[variables('vpnGatewayNestedTemplateUri')]"
+                },
+                "parameters": {
+                    "suffix": {
+                        "value": "[variables('suffix')]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    },
+                    "virtualNetworkName": {
+                        "value": "[reference(resourceId('Microsoft.Resources/deployments', 'linkedTemplate-vnet-0')).outputs.virtualNetworkName.value]"
+                    },
+                    "gatewaySku": {
+                        "value": "VpnGw1"
                     }
                 }
             }
